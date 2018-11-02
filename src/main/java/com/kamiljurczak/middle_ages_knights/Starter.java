@@ -1,6 +1,5 @@
 package com.kamiljurczak.middle_ages_knights;
 
-import com.kamiljurczak.component.TestComponent;
 import com.kamiljurczak.middle_ages_knights.domain.Castle;
 import com.kamiljurczak.middle_ages_knights.domain.DragonKillingKnight;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Starter implements CommandLineRunner {
-
-    @Autowired
-    TestComponent test;
 
     @Autowired
     Castle castle;

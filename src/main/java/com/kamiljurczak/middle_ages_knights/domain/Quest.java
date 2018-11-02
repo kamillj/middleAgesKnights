@@ -1,8 +1,5 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Quest {
 
     private String description;
