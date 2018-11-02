@@ -1,7 +1,12 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope("prototype")
+//@Scope("singleton")
 public class Knight {
 
     private String name;
@@ -9,7 +14,8 @@ public class Knight {
     private Quest quest;
 
     public Knight(){
-
+        this.name = "Lancelot";
+        this.age = 29;
     }
 
     public Knight(String name, int age, Quest quest) {
@@ -23,9 +29,19 @@ public class Knight {
         this.age = age;
     }
 
+    @Autowired
     public void setQuest(Quest quest){
         System.out.println("Ustawiam zadanie dla rycerza");
         this.quest = quest;
+    }
+
+    int getAge() {
+        return age;
+    }
+
+    void setAge(int age) {
+
+        this.age = age;
     }
 
     public String toString(){

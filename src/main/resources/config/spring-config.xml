@@ -12,7 +12,7 @@
     
     
     <bean id="quest" class="com.kamiljurczak.middle_ages_knights.domain.Quest"/>
-    <bean id="knight" class="com.kamiljurczak.middle_ages_knights.domain.Knight">
+    <bean id="knight" class="com.kamiljurczak.middle_ages_knights.domain.Knight" scope="prototype">
         <constructor-arg index="0" value="Lancelot"/>
         <constructor-arg index="1" value="29"/>
         <property name="quest" ref="quest"/>

@@ -2,18 +2,17 @@ package com.kamiljurczak.middle_ages_knights.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
+@Component
 public class Castle {
 
+    @Value("${my.castle.name}")
     private String name;
 
     private Knight knight;
 
+    @Autowired
     public Castle(Knight knight) {
         this.knight = knight;
     }
