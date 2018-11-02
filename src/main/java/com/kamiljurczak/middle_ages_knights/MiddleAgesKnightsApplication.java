@@ -6,7 +6,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:config/spring-config.xml")
 public class MiddleAgesKnightsApplication {
 
 	public static void main(String[] args) {
