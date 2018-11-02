@@ -1,7 +1,7 @@
 package com.kamiljurczak.middle_ages_knights;
 
+import com.kamiljurczak.middle_ages_knights.domain.repository.InMemoryKnightRepository;
 import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
-import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

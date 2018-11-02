@@ -1,6 +1,5 @@
 package com.kamiljurczak.middle_ages_knights.services;
 
-import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import com.kamiljurczak.middle_ages_knights.domain.Quest;
 import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
 import com.kamiljurczak.middle_ages_knights.domain.repository.QuestRepository;
