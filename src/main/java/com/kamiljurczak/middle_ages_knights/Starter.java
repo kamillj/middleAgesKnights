@@ -20,13 +20,6 @@ public class Starter implements CommandLineRunner {
     QuestService questService;
 
     @Override
-    public String toString() {
-        return "Starter{" +
-                "questRepository=" + questRepository +
-                '}';
-    }
-
-    @Override
     public void run(String... args) throws Exception {
 
         questRepository.createRandomQuest();

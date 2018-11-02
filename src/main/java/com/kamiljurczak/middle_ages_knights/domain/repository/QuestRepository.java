@@ -12,7 +12,7 @@ import java.util.Random;
 @Repository
 public class QuestRepository {
 
-    final static Random random = new Random();
+    private final static Random random = new Random();
 
     List<Quest> quests = new ArrayList<>();
 

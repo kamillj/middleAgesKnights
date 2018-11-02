@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class MiddleAgesKnightsApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(MiddleAgesKnightsApplication.class, args);
     }
 }
