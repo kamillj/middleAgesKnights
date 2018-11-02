@@ -1,12 +1,8 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
-//@Scope("singleton")
 public class Knight {
 
     private String name;

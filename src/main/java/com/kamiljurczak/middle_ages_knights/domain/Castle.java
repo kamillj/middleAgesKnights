@@ -1,6 +1,7 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,10 @@ public class Castle {
     private Knight knight;
 
     @Autowired
+//    public Castle(@Qualifier(value = "lancelot") Knight knight) {
+//        this.knight = knight;
+//    }
+
     public Castle(Knight knight) {
         this.knight = knight;
     }

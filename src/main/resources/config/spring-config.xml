@@ -11,9 +11,14 @@
     <import resource="classpath:config/castle-config.xml"/>
     
     
-    <bean id="quest" class="com.kamiljurczak.middle_ages_knights.domain.Quest"/>
-    <bean id="knight" class="com.kamiljurczak.middle_ages_knights.domain.Knight" scope="prototype">
+    <bean id="quest" class="com.kamiljurczak.middle_ages_knights.domain.Quest" scope="prototype"/>
+    <bean id="lancelot" class="com.kamiljurczak.middle_ages_knights.domain.Knight" scope="prototype" primary="true">
         <constructor-arg index="0" value="Lancelot"/>
+        <constructor-arg index="1" value="29"/>
+        <property name="quest" ref="quest"/>
+    </bean>
+    <bean id="percival" class="com.kamiljurczak.middle_ages_knights.domain.Knight" scope="prototype">
+        <constructor-arg index="0" value="Percival"/>
         <constructor-arg index="1" value="29"/>
         <property name="quest" ref="quest"/>
     </bean>
