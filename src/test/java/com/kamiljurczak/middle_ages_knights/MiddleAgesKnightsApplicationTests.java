@@ -1,6 +1,6 @@
 package com.kamiljurczak.middle_ages_knights;
 
-import com.kamiljurczak.middle_ages_knights.domain.Castle;
+import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class MiddleAgesKnightsApplicationTests {
 
 	@Autowired
-	Knight knight;
-
-	@Autowired
-	Castle castle;
+	KnightRepository knightRepository;
 
 	@Test
 	public void contextLoads() {
@@ -28,7 +25,7 @@ public class MiddleAgesKnightsApplicationTests {
 	@Test
 	public void testCastle(){
 		String except = "Znajduje się tu zamek Castle Black zamieszkały przez rycerza Lancelot (29). Ma zadnie: Uratuj księżniczkę";
-		assertEquals(except, castle.toString());
+		assertEquals(except, knightRepository.toString());
 	}
 
 }

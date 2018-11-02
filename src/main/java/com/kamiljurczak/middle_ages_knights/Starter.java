@@ -1,29 +1,40 @@
 package com.kamiljurczak.middle_ages_knights;
 
-import com.kamiljurczak.middle_ages_knights.domain.Castle;
-import com.kamiljurczak.middle_ages_knights.domain.Knight;
-import com.kamiljurczak.middle_ages_knights.domain.Quest;
-import com.kamiljurczak.middle_ages_knights.domain.Tournament;
+import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
+import com.kamiljurczak.middle_ages_knights.domain.repository.QuestRepository;
+import com.kamiljurczak.middle_ages_knights.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("singleton")
 public class Starter implements CommandLineRunner {
 
     @Autowired
-    Castle castle;
+    KnightRepository knightRepository;
 
     @Autowired
-    Tournament tournament;
+    QuestRepository questRepository;
+
+    @Autowired
+    QuestService questService;
+
+    @Override
+    public String toString() {
+        return "Starter{" +
+                "questRepository=" + questRepository +
+                '}';
+    }
 
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println(castle);
-        tournament.duel();
-        System.out.println(tournament);
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
+        questRepository.createRandomQuest();
+        System.out.println(questRepository);
+
+        questService.assignRandomQuest("Lancelot");
+        questService.assignRandomQuest("Percival");
     }
 }
