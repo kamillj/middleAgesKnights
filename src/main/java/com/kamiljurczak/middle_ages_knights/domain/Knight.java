@@ -43,4 +43,19 @@ public class Knight {
     public String toString(){
         return name + " (" + age + "). Ma zadnie: " + quest;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Knight knight = (Knight) o;
+
+        return age == knight.age;
+    }
+
+    @Override
+    public int hashCode() {
+        return age;
+    }
 }

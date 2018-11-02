@@ -14,10 +14,6 @@ public class Castle {
     private Knight knight;
 
     @Autowired
-//    public Castle(@Qualifier(value = "lancelot") Knight knight) {
-//        this.knight = knight;
-//    }
-
     public Castle(Knight knight) {
         this.knight = knight;
     }

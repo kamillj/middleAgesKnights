@@ -13,7 +13,12 @@
         <constructor-arg index="0" ref="lancelot"/>
         <property name="name" value="${my.castle.name}"/>
     </bean>
-    <bean id="turniej" class="com.kamiljurczak.middle_ages_knights.domain.Tournament">
-        <property name="knight" ref="percival"/>
+    <bean id="tournament" class="com.kamiljurczak.middle_ages_knights.domain.Tournament">
+        <property name="knights">
+            <map>
+                <entry key="lancelot" value-ref="lancelot"/>
+                <entry key="percival" value-ref="percival"/>
+            </map>
+        </property>
     </bean>
 </beans>
