@@ -35,11 +35,18 @@ public class InMemoryKnightRepository implements KnightRepository {
     }
 
     @Override
+    public void createKnight(Knight knight) {
+        knights.put(knight.getName(), knight);
+    }
+
+    @Override
     @PostConstruct
     public void build(){
         createKnight("Lancelot", 29);
         createKnight("Percival", 25);
     }
+
+
 
     @Override
     public String toString() {

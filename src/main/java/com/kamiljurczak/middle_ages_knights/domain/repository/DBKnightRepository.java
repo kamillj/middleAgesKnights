@@ -57,5 +57,15 @@ public class DBKnightRepository implements KnightRepository{
         createKnight("Percival", 25);
     }
 
+    @Override
+    public void createKnight(Knight knight) {
+        System.out.println("Używam bazy danych");
+        try {
+            throw new ExecutionControl.NotImplementedException("Not implemented");
+        } catch (ExecutionControl.NotImplementedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
