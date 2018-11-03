@@ -16,12 +16,14 @@
         <tr>
             <td>Imie rycerza</td>
             <td>Wiek</td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
         <tr th:each=" knight : ${knights}">
             <td th:text="${knight.name}"></td>
-            <td th:text="${knight.age}"></td>
+            <td th:text="${knight.level}"></td>
+            <td><a th:href="${'/knight?id='+knight.id}">Podglad</a></td>
         </tr>
         </tbody>
     </table>
