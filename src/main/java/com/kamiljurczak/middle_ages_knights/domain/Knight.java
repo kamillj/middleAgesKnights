@@ -13,8 +13,6 @@ public class Knight {
 
 
     public Knight() {
-        this.name = "Lancelot";
-        this.age = 29;
     }
 
     public Knight(String name, int age) {

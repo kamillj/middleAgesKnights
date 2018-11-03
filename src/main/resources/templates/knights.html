@@ -1,22 +1,31 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Knight list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <table>
+<div class="container">
+
+    <table class="table">
         <thead>
-            <tr>
-                <td>imie rycerza</td>
-                <td>wiek</td></tr>
+        <tr>
+            <td>Imie rycerza</td>
+            <td>Wiek</td>
+        </tr>
         </thead>
-        <tbody th:each="knight : ${knights}">
-            <tr>
-                <td th:text="${knight.name}"></td>
-                <td th:text="${knight.age}"></td>
-            </tr>
+        <tbody>
+        <tr th:each=" knight : ${knights}">
+            <td th:text="${knight.name}"></td>
+            <td th:text="${knight.age}"></td>
+        </tr>
         </tbody>
     </table>
+</div>
 </body>
 </html>
