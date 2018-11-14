@@ -42,6 +42,7 @@ public class InMemoryKnightRepository implements KnightRepository {
 
     @Override
     public void createKnight(Knight knight) {
+        knight.setId(getNewId());
         knights.put(knight.getId(), knight);
     }
 
@@ -60,8 +61,8 @@ public class InMemoryKnightRepository implements KnightRepository {
                 '}';
     }
 
-    public int getNewId() {
+    private int getNewId() {
         if(knights.isEmpty()) return 0;
-        else return knights.keySet().stream().max(Integer::max).get() + 1;
+        else return knights.size();
     }
 }

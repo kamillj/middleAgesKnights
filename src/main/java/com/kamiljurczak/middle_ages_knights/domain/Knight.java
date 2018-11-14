@@ -13,6 +13,7 @@ public class Knight {
     private Quest quest;
 
     public Knight() {
+        this.level = 1;
     }
 
     public Knight(String name, int age) {

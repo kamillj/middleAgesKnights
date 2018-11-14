@@ -22,7 +22,11 @@ public class KnightService {
         knightRepository.createKnight(knight);
     }
 
-    public Knight getKnightById(int id){
+    public Knight getKnightById(Integer id){
         return knightRepository.getKnightById(id);
+    }
+
+    public void deleteKnight(Integer id) {
+        knightRepository.deleteKnight(id);
     }
 }
