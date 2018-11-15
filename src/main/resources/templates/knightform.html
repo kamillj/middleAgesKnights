@@ -11,18 +11,16 @@
 </head>
 <body>
 <div class="container">
-
-    Aktualny czas: <span th:text="${timecomponent.time}"></span>
-    Posiadane złoto: <span th:text="${playerInformation.gold}"></span>
-
     <form class="form-horizontal" th:object="${knight}" th:action="@{/knights}" th:method="post">
         <div class="form-group">
             <label class="control-label">Imie:</label>
             <input type="text" class="form-control" th:field="*{name}"/>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
         </div>
         <div class="form-group">
             <label class="control-label">Wiek:</label>
             <input type="number" class="form-control" th:field="*{age}"/>
+            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"/>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-default">Utworz rycerza</button>

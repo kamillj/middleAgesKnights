@@ -1,12 +1,24 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Knight {
 
     private int id;
+
+    @NotNull
+    @Size(min = 2, message = "Imię rycerza musi być większe lub równe 2 znaki")
+    @Size(max = 40, message = "Imię rycerza musi być mniejsze lub równe 40 znaków")
     private String name;
+    @NotNull
+    @Range(min = 18, max = 60, message = "Rycerz musi mieć więcej niż 18 i mniej niż 60 lat")
     private int age;
     private int level;
 
