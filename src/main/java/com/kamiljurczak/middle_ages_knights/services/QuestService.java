@@ -35,4 +35,8 @@ public class QuestService {
     public void setQuestRepository(QuestRepository questRepository) {
         this.questRepository = questRepository;
     }
+
+    public void updateQuest(Quest quest) {
+        questRepository.updateQuest(quest);
+    }
 }

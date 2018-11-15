@@ -25,9 +25,9 @@ public class QuestServiceTest {
     public void returnsNotStartedQuests(){
 
         List<Quest> quests = new ArrayList<>();
-        Quest q1 = new Quest("Test q1");
-        Quest q2 = new Quest("Test q2");
-        Quest q3 = new Quest("Test q3");
+        Quest q1 = new Quest(1, "Test q1");
+        Quest q2 = new Quest(2, "Test q2");
+        Quest q3 = new Quest(3, "Test q3");
 
         q2.setStarted(true);
 

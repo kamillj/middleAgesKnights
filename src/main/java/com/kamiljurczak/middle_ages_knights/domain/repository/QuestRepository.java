@@ -1,31 +1,32 @@
 package com.kamiljurczak.middle_ages_knights.domain.repository;
 
 import com.kamiljurczak.middle_ages_knights.domain.Quest;
+import com.kamiljurczak.middle_ages_knights.utils.Ids;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Repository
 public class QuestRepository {
 
     private final static Random random = new Random();
 
-    List<Quest> quests = new ArrayList<>();
+    private Map<Integer, Quest> quests = new HashMap<>();
 
-    public void createQuest(String description){
-        quests.add(new Quest(description));
+    private void createQuest(String description){
+        Integer newId = Ids.getNewId(quests.keySet());
+        Quest quest = new Quest(newId, description);
+        quests.put(newId, quest);
     }
 
     public List<Quest> getAllQuests() {
-        return quests;
+        return new ArrayList<>(quests.values());
     }
 
     public void deleteQuest(Quest quest){
-        quests.remove(quest);
+        quests.remove(quest.getId());
     }
 
 //    @Scheduled(fixedDelay = 1000) //czeka na zakończenie metody
@@ -36,13 +37,21 @@ public class QuestRepository {
     {
         List<String> descriptions = new ArrayList<>();
 
-        descriptions.add("Uratuj księżniczkę");
-        descriptions.add("Weź udział w turnieju");
-        descriptions.add("Zabij bandę goblinów");
+        descriptions.add("Uratuj ksiezniczkę");
+        descriptions.add("Wez udzial w turnieju");
+        descriptions.add("Zabij bande goblinow");
         descriptions.add("Zabij smoka");
 
         String description = descriptions.get(random.nextInt(descriptions.size()));
         createQuest(description);
+    }
+
+    public void updateQuest(Quest quest) {
+        quests.put(quest.getId(), quest);
+    }
+
+    public Quest getQuest(Integer id) {
+        return quests.get(id);
     }
 
     @PostConstruct
@@ -55,4 +64,6 @@ public class QuestRepository {
                 "quests=" + quests +
                 '}';
     }
+
+
 }
