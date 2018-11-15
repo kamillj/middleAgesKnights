@@ -1,6 +1,7 @@
 package com.kamiljurczak.middle_ages_knights.domain.repository;
 
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
+import com.kamiljurczak.middle_ages_knights.utils.Ids;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -15,7 +16,7 @@ public class InMemoryKnightRepository implements KnightRepository {
     @Override
     public void createKnight(String name, int age) {
         Knight knight = new Knight(name, age);
-        knight.setId(getNewId());
+        knight.setId(Ids.getNewId(knights.keySet()));
         knights.put(knight.getId(), knight);
     }
 
@@ -42,7 +43,7 @@ public class InMemoryKnightRepository implements KnightRepository {
 
     @Override
     public void createKnight(Knight knight) {
-        knight.setId(getNewId());
+        knight.setId(Ids.getNewId(knights.keySet()));
         knights.put(knight.getId(), knight);
     }
 
@@ -59,10 +60,5 @@ public class InMemoryKnightRepository implements KnightRepository {
         return "InMemoryKnightRepository{" +
                 "knights=" + knights +
                 '}';
-    }
-
-    private int getNewId() {
-        if(knights.isEmpty()) return 0;
-        else return knights.size();
     }
 }
