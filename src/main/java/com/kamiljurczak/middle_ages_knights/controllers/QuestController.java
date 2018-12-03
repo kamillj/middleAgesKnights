@@ -27,7 +27,7 @@ public class QuestController {
     PlayerInformation playerInformation;
 
     @RequestMapping("/assignQuest")
-    public String assignQuest(@RequestParam("knightId") Integer id, Model model){
+    public String assignQuest(@RequestParam("knightId") Integer id, Model model) {
         Knight knight = knightService.getKnightById(id);
         List<Quest> notStartedQuests = questService.getAllNotStartedQuests();
         model.addAttribute("knight", knight);
@@ -36,7 +36,7 @@ public class QuestController {
     }
 
     @RequestMapping(value = "/assignQuest", method = RequestMethod.POST)
-    public String assignQuest(Knight knight){
+    public String assignQuest(Knight knight) {
         knightService.updateKnight(knight);
         Quest quest = knight.getQuest();
         questService.updateQuest(quest);
@@ -44,14 +44,8 @@ public class QuestController {
     }
 
     @RequestMapping(value = "/checkQuests")
-    public String checkQuest(Knight knight){
-        List<Knight> allKnights = knightService.getAllKnights();
-        allKnights.forEach(knight1 -> {
-            knight.getQuest().isCompleted();
-        });
-
-        int currentGold = playerInformation.getGold();
-        playerInformation.setGold(currentGold + knightService.collectRewards());
+    public String checkQuest(Knight knight) {
+        knightService.getMyGold();
 
         return "redirect:/knights";
     }
