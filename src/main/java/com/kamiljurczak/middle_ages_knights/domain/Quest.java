@@ -1,15 +1,27 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+//@Table(name = "Zadania")
 public class Quest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+//    @Column(name = "Opis")
     private String description;
+
     private int reward = 100;
+
     protected int lenghtInSec = 10;
+
     private boolean started = false;
+
     private boolean completed = false;
+
     protected LocalDateTime startDate;
 
     public Quest() {
@@ -68,11 +80,11 @@ public class Quest {
     }
 
     public boolean isCompleted() {
-        if(this.completed) return true;
+        if (this.completed) return true;
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime questEndDate = this.startDate.plusSeconds(this.lenghtInSec);
-        boolean isAfter =  now.isAfter(questEndDate);
-        if(isAfter) this.completed = true;
+        boolean isAfter = now.isAfter(questEndDate);
+        if (isAfter) this.completed = true;
 
         return isAfter;
     }
