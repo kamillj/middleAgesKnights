@@ -1,17 +1,22 @@
 package com.kamiljurczak.middle_ages_knights.domain;
 
+import java.time.LocalDateTime;
+
 public class Quest {
 
     private int id;
     private String description;
     private int reward = 100;
-    private int lenght = 30000;
+    protected int lenghtInSec = 10;
     private boolean started = false;
+    private boolean completed = false;
+    protected LocalDateTime startDate;
 
     public Quest() {
     }
 
     public Quest(int id, String description) {
+
         this.id = id;
         this.description = description;
     }
@@ -38,11 +43,11 @@ public class Quest {
     }
 
     public int getLenght() {
-        return lenght;
+        return lenghtInSec;
     }
 
     public void setLenght(int lenght) {
-        this.lenght = lenght;
+        this.lenghtInSec = lenght;
     }
 
     public boolean isStarted() {
@@ -50,6 +55,7 @@ public class Quest {
     }
 
     public void setStarted(boolean started) {
+        if (started) this.startDate = LocalDateTime.now();
         this.started = started;
     }
 
@@ -59,5 +65,15 @@ public class Quest {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isCompleted() {
+        if(this.completed) return true;
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime questEndDate = this.startDate.plusSeconds(this.lenghtInSec);
+        boolean isAfter =  now.isAfter(questEndDate);
+        if(isAfter) this.completed = true;
+
+        return isAfter;
     }
 }

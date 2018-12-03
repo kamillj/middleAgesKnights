@@ -1,6 +1,7 @@
 package com.kamiljurczak.middle_ages_knights.services;
 
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
+import com.kamiljurczak.middle_ages_knights.domain.PlayerInformation;
 import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,16 @@ public class KnightService {
 
     public void updateKnight(Knight knight) {
         knightRepository.updateKnight(knight.getId(), knight);
+    }
+
+    public int collectRewards() {
+        int sum = knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted())
+                .mapToInt(knight -> knight.getQuest().getReward())
+                .sum();
+
+        knightRepository.getAllKnights().stream().filter(knight -> knight.getQuest().isCompleted())
+                .forEach(knight -> knight.setQuest(null));
+
+        return sum;
     }
 }

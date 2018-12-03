@@ -1,6 +1,7 @@
 package com.kamiljurczak.middle_ages_knights.controllers;
 
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
+import com.kamiljurczak.middle_ages_knights.domain.PlayerInformation;
 import com.kamiljurczak.middle_ages_knights.domain.Quest;
 import com.kamiljurczak.middle_ages_knights.services.KnightService;
 import com.kamiljurczak.middle_ages_knights.services.QuestService;
@@ -22,6 +23,9 @@ public class QuestController {
     @Autowired
     QuestService questService;
 
+    @Autowired
+    PlayerInformation playerInformation;
+
     @RequestMapping("/assignQuest")
     public String assignQuest(@RequestParam("knightId") Integer id, Model model){
         Knight knight = knightService.getKnightById(id);
@@ -39,4 +43,16 @@ public class QuestController {
         return "redirect:/knights";
     }
 
+    @RequestMapping(value = "/checkQuests")
+    public String checkQuest(Knight knight){
+        List<Knight> allKnights = knightService.getAllKnights();
+        allKnights.forEach(knight1 -> {
+            knight.getQuest().isCompleted();
+        });
+
+        int currentGold = playerInformation.getGold();
+        playerInformation.setGold(currentGold + knightService.collectRewards());
+
+        return "redirect:/knights";
+    }
 }

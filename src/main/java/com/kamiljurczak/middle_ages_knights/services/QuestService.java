@@ -39,4 +39,8 @@ public class QuestService {
     public void updateQuest(Quest quest) {
         questRepository.updateQuest(quest);
     }
+
+    public boolean isQuestCompleted(Quest quest){
+        return quest.isCompleted();
+    }
 }
