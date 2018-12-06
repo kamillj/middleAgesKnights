@@ -11,26 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
 public class MainConfig {
 
     @Bean(name = "inMemoryKnightRepository")
     @Profile("dev")
-    public KnightRepository createInMemoryRepo(){
+    public KnightRepository createInMemoryRepo() {
         return new InMemoryKnightRepository();
     }
 
     @Bean(name = "dbKnightRepository")
     @Profile("prod")
-    public KnightRepository createDBRepo(){
+    public KnightRepository createDBRepo() {
         return new DBKnightRepository();
-    }
-
-    @Autowired
-    public void securityUsers(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .withUser("kamil").password("pw").roles("USER")
-                .and()
-                .withUser("admin").password("pw").roles("ADMIN");
     }
 }
