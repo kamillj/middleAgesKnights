@@ -4,80 +4,61 @@ import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import jdk.jshell.spi.ExecutionControl;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
 public class DBKnightRepository implements KnightRepository{
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Override
+    @Transactional
     public void createKnight(String name, int age) {
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
+        Knight knight = new Knight(name, age);
+        em.persist(knight);
     }
 
     @Override
     public Collection<Knight> getAllKnights(){
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return em.createQuery("from Knight", Knight.class).getResultList();
     }
 
     @Override
     public Optional<Knight> getKnightByName(String name){
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        Knight knight = em.createQuery("from Knight k where k.name=:name", Knight.class)
+                .setParameter("name", name).getSingleResult();
+        return Optional.ofNullable(knight);
     }
 
     @Override
     public Knight getKnightById(Integer id) {
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return em.find(Knight.class, id);
     }
 
     @Override
+    @Transactional
     public void deleteKnight(Integer id){
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
+        em.remove(id);
     }
 
     @Override
-    @PostConstruct
-    public void build(){
-        createKnight("Lancelot", 29);
-        createKnight("Percival", 25);
+    public void build() {
+
     }
 
     @Override
+    @Transactional
     public void createKnight(Knight knight) {
-        System.out.println("Używam bazy danych");
-        try {
-            throw new ExecutionControl.NotImplementedException("Not implemented");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
+        em.persist(knight);
     }
 
-
+    @Override
+    @Transactional
+    public void updateKnight(int id, Knight knight) {
+        em.merge(knight);
+    }
 }

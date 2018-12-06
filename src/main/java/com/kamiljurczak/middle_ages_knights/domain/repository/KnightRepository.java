@@ -3,7 +3,6 @@ package com.kamiljurczak.middle_ages_knights.domain.repository;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import org.apache.commons.lang.NotImplementedException;
 
-
 import java.util.Collection;
 import java.util.Optional;
 

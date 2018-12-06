@@ -3,9 +3,12 @@ package com.kamiljurczak.middle_ages_knights.services;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import com.kamiljurczak.middle_ages_knights.domain.PlayerInformation;
 import com.kamiljurczak.middle_ages_knights.domain.repository.KnightRepository;
+import com.kamiljurczak.middle_ages_knights.domain.repository.PlayerInformationRepository;
+import com.kamiljurczak.middle_ages_knights.domain.repository.QuestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -17,7 +20,10 @@ public class KnightService {
     KnightRepository knightRepository;
 
     @Autowired
-    PlayerInformation playerInformation;
+    QuestRepository questRepository;
+
+    @Autowired
+    PlayerInformationRepository playerInformationRepository;
 
     public List<Knight> getAllKnights(){
         return new ArrayList<>(knightRepository.getAllKnights());
@@ -57,14 +63,17 @@ public class KnightService {
         return sum;
     }
 
+    @Transactional
     public void getMyGold(){
         List<Knight> allKnights = getAllKnights();
         allKnights.forEach(knight -> {
             if (knight.getQuest() != null) {
-                knight.getQuest().isCompleted();
+                boolean isCompleted = knight.getQuest().isCompleted();
+                if(isCompleted) questRepository.updateQuest(knight.getQuest());
             }
         });
 
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         int currentGold = playerInformation.getGold();
         playerInformation.setGold(currentGold + collectRewards());
     }

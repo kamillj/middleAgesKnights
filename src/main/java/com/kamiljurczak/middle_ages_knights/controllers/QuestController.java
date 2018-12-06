@@ -3,6 +3,7 @@ package com.kamiljurczak.middle_ages_knights.controllers;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import com.kamiljurczak.middle_ages_knights.domain.PlayerInformation;
 import com.kamiljurczak.middle_ages_knights.domain.Quest;
+import com.kamiljurczak.middle_ages_knights.domain.repository.PlayerInformationRepository;
 import com.kamiljurczak.middle_ages_knights.services.KnightService;
 import com.kamiljurczak.middle_ages_knights.services.QuestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class QuestController {
     QuestService questService;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @RequestMapping("/assignQuest")
     public String assignQuest(@RequestParam("knightId") Integer id, Model model) {

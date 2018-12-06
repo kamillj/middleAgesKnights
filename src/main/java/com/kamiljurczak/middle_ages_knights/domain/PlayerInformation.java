@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Component
 //@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Entity
 public class PlayerInformation {

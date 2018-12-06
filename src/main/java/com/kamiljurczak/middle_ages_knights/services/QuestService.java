@@ -24,7 +24,7 @@ public class QuestService {
         List<Quest> allQuests = questRepository.getAllQuests();
         Quest randomQuest = allQuests.get(random.nextInt(allQuests.size()));
         knightRepository.getKnightByName(knightName).ifPresent(knight -> knight.setQuest(randomQuest));
-        questRepository.deleteQuest(randomQuest);
+//        questRepository.deleteQuest(randomQuest);
     }
 
     public List<Quest> getAllNotStartedQuests() {

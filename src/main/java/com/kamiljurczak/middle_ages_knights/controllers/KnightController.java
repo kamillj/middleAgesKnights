@@ -3,6 +3,7 @@ package com.kamiljurczak.middle_ages_knights.controllers;
 import com.kamiljurczak.middle_ages_knights.components.TimeComponent;
 import com.kamiljurczak.middle_ages_knights.domain.Knight;
 import com.kamiljurczak.middle_ages_knights.domain.PlayerInformation;
+import com.kamiljurczak.middle_ages_knights.domain.repository.PlayerInformationRepository;
 import com.kamiljurczak.middle_ages_knights.services.KnightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class KnightController {
     TimeComponent timeComponent;
 
     @Autowired
-    PlayerInformation playerInformation;
+    PlayerInformationRepository playerInformationRepository;
 
     @Autowired
     KnightService knightService;
@@ -31,6 +32,7 @@ public class KnightController {
     @RequestMapping("/knights")
     public String getKnights(Model model) {
         List<Knight> knights = knightService.getAllKnights();
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knights", knights);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerInformation", playerInformation);
@@ -40,6 +42,7 @@ public class KnightController {
     @RequestMapping("/knight")
     public String getKnight(@RequestParam("id") Integer id, Model model) {
         Knight knight = knightService.getKnightById(id);
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", knight);
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerInformation", playerInformation);
@@ -48,6 +51,7 @@ public class KnightController {
 
     @RequestMapping("/newKnight")
     public String createKnight(Model model) {
+        PlayerInformation playerInformation = playerInformationRepository.getFirst();
         model.addAttribute("knight", new Knight());
         model.addAttribute("timecomponent", timeComponent);
         model.addAttribute("playerInformation", playerInformation);
