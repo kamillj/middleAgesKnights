@@ -16,10 +16,7 @@ public class PlayerInformationRepository {
 
     @Transactional
     public void createPlayerInformation(PlayerInformation playerInformation) {
-
-        PlayerInformation playerInf = new PlayerInformation();
-
-        em.persist(playerInf);
+        em.persist(playerInformation);
     }
 
     public PlayerInformation getFirst() {
